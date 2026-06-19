@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sadhna PDFs - Digital Library | AstroTantraHawan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Eczar:wght@500;600;700;800&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#FFFFFF;
+  --cream-2:#F4F1EA;
+  --ink:#221A14;
+  --ink-soft:#6B5C4C;
+  --maroon:#7A1422;
+  --maroon-dark:#4D0D17;
+  --maroon-darker:#2C0810;
+  --gold:#B6860C;
+  --gold-light:#D9B45A;
+  --gold-bright:#C99A1F;
+  --navy:#11142B;
+  --navy-2:#1B1E3C;
+  --black:#0B0A09;
+  --white:#FFFFFF;
+  --green-wa:#2FAE4E;
+  --radius-sm:4px;
+  --radius-md:8px;
+  --radius-lg:14px;
+  --shadow-soft:0 1px 2px rgba(20,8,4,.06);
+  --shadow-card:0 10px 22px -16px rgba(20,8,4,.18);
+  --ff-display:'Eczar', serif;
+  --ff-body:'Hind', sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--ff-body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input{font-family:inherit;}
+.container{max-width:1240px;margin:0 auto;padding:0 24px;}
+
+.eyebrow{
+  font-family:var(--ff-body);
+  font-size:12.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--maroon);
+}
+h1,h2,h3,h4{font-family:var(--ff-display);font-weight:700;line-height:1.2;color:var(--ink);}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 27px;border-radius:var(--radius-sm);
+  font-weight:600;font-size:14.5px;letter-spacing:.01em;
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
+  white-space:nowrap;
+}
+.btn-fill{background:var(--maroon);color:var(--white);}
+.btn-fill:hover{background:var(--maroon-dark);}
+.btn-outline{border:1.5px solid var(--maroon);color:var(--maroon);background:transparent;}
+.btn-outline:hover{background:var(--maroon);color:var(--white);}
+.btn-gold{background:var(--gold);color:var(--white);}
+.btn-gold:hover{background:var(--gold-bright);}
+
+/* ============ TOPBAR ============ */
+.topbar{
+  background:var(--black);color:#E9DEC9;
+  font-size:12.5px;padding:8px 0;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.mantra{font-family:var(--ff-display);font-style:italic;letter-spacing:.04em;color:var(--gold-light);font-size:13px;font-weight:700;}
+.topbar-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.topbar-link{display:inline-flex;align-items:center;gap:6px;font-weight:600;}
+.topbar-link svg{width:14px;height:14px;}
+.topbar .btn{padding:7px 18px;font-size:12.5px;}
+
+/* ============ NAVBAR ============ */
+.navbar{
+  background:var(--cream);
+  border-bottom:1px solid rgba(122,20,34,.14);
+  position:sticky;top:0;z-index:50;
+  transition:box-shadow .3s ease;
+}
+.navbar.scrolled{box-shadow:var(--shadow-soft);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+.brand{display:flex;flex-direction:column;line-height:1.05;}
+.brand-name{
+  font-family:var(--ff-display);font-weight:800;font-size:24px;
+  color:var(--maroon);letter-spacing:.01em;
+}
+.brand-name .accent{color:var(--gold);}
+.brand-tag{font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);margin-top:2px;font-weight:600;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links>li{position:relative;}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink);padding:6px 0;position:relative;display:flex;align-items:center;gap:4px;}
+.nav-links a.active{color:var(--maroon);}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--gold);}
+.nav-links a:hover{color:var(--maroon);}
+.nav-cta{display:flex;align-items:center;gap:14px;}
+
+
+/* ============ HERO BANNER ============ */
+.pdfs-hero{
+  background:linear-gradient(140deg, var(--maroon-dark), var(--maroon));
+  color:var(--white);
+  padding:80px 0;
+  position:relative;
+  overflow:hidden;
+}
+.pdfs-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(217,180,90,.35), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(182,134,12,.25), transparent 55%);
+}
+.hero-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;
+}
+.hero-content h1{font-size:42px;color:var(--white);margin-bottom:18px;}
+.hero-content p{font-size:17px;color:#E9DEC9;line-height:1.7;max-width:520px;}
+.hero-content .btn{margin-top:28px;}
+.hero-books{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.hero-book-card{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(217,180,90,.25);
+  border-radius:var(--radius-md);
+  padding:32px 20px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  text-align:center;
+  transition:all .3s;
+}
+.hero-book-card:hover{
+  background:rgba(217,180,90,.15);
+  transform:translateY(-6px);
+}
+.hero-book-card .icon{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(217,180,90,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-book-card .icon svg{width:28px;height:28px;color:var(--gold-light);}
+.hero-book-card h4{font-size:15px;color:var(--gold-light);}
+.hero-book-card .price{font-size:18px;font-weight:700;color:var(--white);}
+
+/* ============ LIBRARY SHELF ============ */
+.library-section{padding:80px 0;background:var(--cream-2);}
+.section-head{text-align:center;margin-bottom:48px;}
+.section-head h2{font-size:34px;margin-bottom:12px;}
+.section-head p{font-size:16px;color:var(--ink-soft);}
+
+.pdf-shelf{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+.pdf-book{
+  background:var(--white);
+  border:1px solid rgba(122,20,34,.12);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  transition:all .3s ease;
+  display:flex;flex-direction:column;
+}
+.pdf-book:hover{
+  border-color:var(--gold);
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px -20px rgba(20,8,4,.25);
+}
+.pdf-cover{
+  height:320px;
+  background:linear-gradient(135deg, var(--maroon-dark), var(--navy-2));
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.pdf-cover::before{
+  content:'';position:absolute;inset:0;
+  background:conic-gradient(from 45deg, rgba(217,180,90,.3) 0 25%, transparent 0 50%);
+  background-size:20px 20px;
+  opacity:.4;
+}
+.pdf-cover .icon{
+  position:relative;z-index:2;
+  width:88px;height:88px;
+  border-radius:50%;
+  background:rgba(217,180,90,.25);
+  display:flex;align-items:center;justify-content:center;
+}
+.pdf-cover .icon svg{width:42px;height:42px;color:var(--gold-light);}
+.pdf-info{
+  padding:28px 24px;
+  display:flex;flex-direction:column;gap:12px;
+  flex:1;
+}
+.pdf-info h3{font-size:20px;font-weight:700;}
+.pdf-info .desc{font-size:14px;color:var(--ink-soft);line-height:1.6;flex:1;}
+.pdf-info .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
+.pdf-info .price{font-size:22px;font-weight:700;color:var(--maroon);}
+.pdf-info .btn{width:100%;justify-content:center;margin-top:14px;}
+
+/* ============ BENEFITS SECTION ============ */
+.benefits-section{padding:80px 0;background:var(--cream);}
+.benefits-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px;
+}
+
+.benefit-card{
+  background:var(--white);
+  border:1px solid rgba(122,20,34,.12);
+  border-radius:var(--radius-md);
+  padding:32px 28px;
+  text-align:center;
+  transition:all .3s;
+}
+.benefit-card:hover{
+  border-color:var(--gold);
+  box-shadow:var(--shadow-card);
+}
+.benefit-card .icon{
+  width:68px;height:68px;margin:0 auto 18px;
+  border-radius:50%;
+  background:var(--cream-2);
+  display:flex;align-items:center;justify-content:center;
+}
+.benefit-card .icon svg{width:30px;height:30px;color:var(--maroon);}
+.benefit-card h4{font-size:18px;margin-bottom:10px;}
+.benefit-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--black);color:#C9BFAE;padding:48px 0 24px;position:relative;}
+footer::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:7px;
+  background:conic-gradient(from 45deg, var(--gold) 0 25%, transparent 0 50%);
+  background-size:14px 14px;
+}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+.footer-about .brand-name{font-size:22px;}
+.footer-about p{font-size:13px;line-height:1.7;margin-top:12px;color:#A99E8C;}
+.footer-grid h5{color:var(--gold-light);font-family:var(--ff-body);font-size:14px;font-weight:600;margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;font-size:13px;}
+.footer-links a:hover{color:var(--gold-light);}
+.footer-contact{display:flex;flex-direction:column;gap:12px;font-size:13px;}
+.footer-contact li{display:flex;gap:9px;align-items:flex-start;}
+.footer-contact svg{width:15px;height:15px;color:var(--gold);margin-top:2px;flex-shrink:0;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);padding:18px 0;
+  display:flex;justify-content:space-between;font-size:12px;color:#8A8071;
+}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .hero-books{grid-template-columns:repeat(3,1fr);}
+  .pdf-shelf{grid-template-columns:repeat(2,1fr);}
+  .benefits-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:760px){
+  .hero-books{grid-template-columns:1fr;}
+  .pdf-shelf{grid-template-columns:1fr;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.41 1.26 4.84L2 22l5.36-1.31a9.9 9.9 0 0 0 4.68 1.19h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.83 14.07c-.25.7-1.45 1.34-1.99 1.42-.51.08-1.05.11-3.06-.64-2.57-.96-4.24-3.51-4.37-3.68-.13-.17-1.04-1.38-1.04-2.63 0-1.25.66-1.86.89-2.12.23-.25.5-.32.67-.32.17 0 .34 0 .49.01.16.01.37-.06.58.44.21.5.71 1.74.78 1.86.06.13.1.28.02.45-.08.17-.13.27-.26.42-.13.15-.27.33-.39.44-.13.13-.26.27-.11.53.15.26.67 1.1 1.44 1.79.99.89 1.83 1.16 2.09 1.29.26.13.41.11.57-.07.16-.18.65-.76.83-1.02.18-.26.36-.21.6-.13.25.09 1.58.75 1.85.89.27.13.45.2.51.31.07.12.07.66-.16 1.36z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.7 3.6.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.7 3.6.1.3 0 .7-.2 1l-2.4 2.2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm17 3.2-7.4 5.3a1 1 0 0 1-1.2 0L4 8.2V18h16V8.2zM4.4 6l7.6 5.4L19.6 6H4.4z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-4.4 0-8 3.6-8 8 0 5.5 6.6 11 8 12.5C13.4 21 20 15.5 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><path fill="currentColor" d="M7.7 10.4c1.6 0 2.6 1.1 2.6 2.5 0 1.6-1.3 2.7-2.8 2.7-1.3 0-2.4-.8-2.7-2l1.5-.4c.1.6.6 1 1.2 1 .7 0 1.2-.5 1.2-1.2 0-.7-.5-1.2-1.3-1.2-.3 0-.6.1-.8.3l-1-.8 2.3-2.5H4.9V7.4h5.6v1.3l-2.3 2.5c.2-.1.4-.1.5.2zM14 7c-1.6 0-2.7 1.1-2.7 2.6 0 1.1.6 1.9 1.5 2.3-1.1.4-1.9 1.3-1.9 2.6 0 1.7 1.4 2.9 3.1 2.9 1.8 0 3.1-1.2 3.1-2.9 0-1.3-.8-2.2-1.9-2.6.9-.4 1.5-1.2 1.5-2.3C16.7 8.1 15.6 7 14 7zm0 1.5c.7 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2.5-1.2 1.2-1.2zm0 4.1c.9 0 1.6.6 1.6 1.5s-.7 1.5-1.6 1.5-1.6-.6-1.6-1.5.7-1.5 1.6-1.5zM19.5 12c0-.6.4-1 1-1s1 .4 1 1-1.8 3.3-1.8 3.3S19.5 12.6 19.5 12z"/></symbol>
+<symbol id="i-trishul" viewBox="0 0 24 24"><path fill="currentColor" d="M11 2h2v6.3c1-.9 2.4-1.3 3.5-.6 1.3.8 1.6 2.5.7 3.8-.6.9-1.6 1.3-2.6 1.2.2.4.4.9.4 1.3v8h-2v-8c0-.5.1-.9.4-1.3-1 .1-2-.3-2.6-1.2-.9-1.3-.6-3 .7-3.8 1.1-.7 2.5-.3 3.5.6V2z"/></symbol>
+<symbol id="i-kali" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.5-1.7 3.4.6.2 1.1.6 1.5 1.1 1.4-.4 2.7.1 3.4 1.3.8 1.3.5 2.9-.6 3.8.6.9.6 2.1-.1 3-1 1.3-2.9 1.4-4 .3-.9 1-2.4 1.3-3.6.7-.4 1.1-1.4 1.9-2.6 1.9-1.2 0-2.2-.8-2.6-1.9-1.2.6-2.6.3-3.6-.7-1.1 1.1-3 1-4-.3-.7-.9-.7-2.1-.1-3-1.1-.9-1.4-2.5-.6-3.8.7-1.2 2-1.7 3.4-1.3.4-.5.9-.9 1.5-1.1C8.8 8.5 8 7.5 8 6a4 4 0 0 1 4-4z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path fill="currentColor" d="M13 5v10.6l3.3-3.3 1.4 1.4L12 19.4l-5.7-5.7 1.4-1.4L11 15.6V5h2zM4 19h16v2H4v-2z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h12V4H6zm2 2h8v2H8V6zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path fill="currentColor" d="M4 11h13.2l-4-4.2 1.4-1.4L21 12l-6.4 6.6-1.4-1.4 4-4.2H4v-2z"/></symbol>
+</defs>
+</svg>
+
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="container">
+    <span class="mantra">‖ Om Kreem Kalikayei Namah ‖</span>
+    <div class="topbar-right">
+      <a href="#" class="topbar-link" style="color:var(--green-wa)"><svg><use href="#i-whatsapp"/></svg>WhatsApp Us</a>
+      <a href="tel:+919876543210" class="topbar-link"><svg><use href="#i-phone"/></svg>+91 98765 43210</a>
+      <a href="index.html#booking-form" class="btn btn-fill">Book Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-name">AstroTantra<span class="accent">Hawan</span></span>
+      <span class="brand-tag">Vedic Astrology • Sacred Hawans • Tantra Guidance</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="hawans.html">Hawans</a></li>
+        <li><a href="consultations.html">Consultations</a></li>
+        <li><a href="freetools.html">Free Tools</a></li>
+        <li><a href="webinars.html">Webinars</a></li>
+        <li><a href="sadhnapdfs.html" class="active">Sadhna PDFs</a></li>
+        <li><a href="resources.html#blog">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#booking-form" class="btn btn-fill">Book Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO BANNER ============ -->
+<section class="pdfs-hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="eyebrow">DIGITAL SPIRITUAL LIBRARY</span>
+      <h1>Sadhna PDFs</h1>
+      <p>Access premium spiritual knowledge through our carefully curated digital library. Download authentic Sadhna guides prepared by experienced practitioners, covering Mantra Sadhana, Tantra practices, and powerful deity worship methods.</p>
+      <a href="#library" class="btn btn-gold">Explore Library <svg style="width:14px;height:14px"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="hero-books">
+      <div class="hero-book-card">
+        <span class="icon"><svg><use href="#i-om"/></svg></span>
+        <h4>Mantra Guides</h4>
+        <span class="price">₹199</span>
+      </div>
+      <div class="hero-book-card">
+        <span class="icon"><svg><use href="#i-trishul"/></svg></span>
+        <h4>Tantra Texts</h4>
+        <span class="price">₹299</span>
+      </div>
+      <div class="hero-book-card">
+        <span class="icon"><svg><use href="#i-kali"/></svg></span>
+        <h4>Deity Sadhana</h4>
+        <span class="price">₹299</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PDF LIBRARY ============ -->
+<section class="library-section" id="library">
+  <div class="container">
+    <div class="section-head">
+      <h2>Premium Sadhna Guides</h2>
+      <p>Authentic spiritual knowledge from ancient Vedic and Tantric traditions</p>
+    </div>
+    
+    <div class="pdf-shelf">
+      <!-- Mantra Sadhna Guide -->
+      <div class="pdf-book">
+        <div class="pdf-cover">
+          <span class="icon"><svg><use href="#i-om"/></svg></span>
+        </div>
+        <div class="pdf-info">
+          <h3>Mantra Sadhna Guide</h3>
+          <p class="desc">Complete guide to powerful Vedic mantras including pronunciation, meanings, proper rituals, and timings. Learn authentic chanting techniques and understand the spiritual science behind each mantra.</p>
+          <div class="meta">
+            <span class="price">₹199</span>
+            <span style="font-size:13px;color:var(--ink-soft)">PDF Guide</span>
+          </div>
+          <a href="#" class="btn btn-gold"><svg style="width:14px;height:14px"><use href="#i-download"/></svg> Download Now</a>
+        </div>
+      </div>
+
+      <!-- Tantra Sadhana Rahasya -->
+      <div class="pdf-book">
+        <div class="pdf-cover">
+          <span class="icon"><svg><use href="#i-trishul"/></svg></span>
+        </div>
+        <div class="pdf-info">
+          <h3>Tantra Sadhana Rahasya</h3>
+          <p class="desc">Comprehensive Tantra practice manual covering advanced techniques, deity worship methods, secret mantras, and initiation procedures. Includes safety guidelines and spiritual discipline requirements.</p>
+          <div class="meta">
+            <span class="price">₹299</span>
+            <span style="font-size:13px;color:var(--ink-soft)">PDF Guide</span>
+          </div>
+          <a href="#" class="btn btn-gold"><svg style="width:14px;height:14px"><use href="#i-download"/></svg> Download Now</a>
+        </div>
+      </div>
+
+      <!-- Maa Kali Sadhana Paddhati -->
+      <div class="pdf-book">
+        <div class="pdf-cover">
+          <span class="icon"><svg><use href="#i-kali"/></svg></span>
+        </div>
+        <div class="pdf-info">
+          <h3>Maa Kali Sadhana Paddhati</h3>
+          <p class="desc">Sacred guide to Maa Kali worship including powerful Kali mantras, puja vidhi, offerings, and meditation techniques. Complete instructions for daily practice and special occasions like Kali Puja.</p>
+          <div class="meta">
+            <span class="price">₹299</span>
+            <span style="font-size:13px;color:var(--ink-soft)">PDF Guide</span>
+          </div>
+          <a href="#" class="btn btn-gold"><svg style="width:14px;height:14px"><use href="#i-download"/></svg> Download Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ BENEFITS SECTION ============ -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Why Choose Our Sadhna PDFs?</h2>
+      <p>Authentic spiritual knowledge backed by traditional expertise</p>
+    </div>
+    
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-book"/></svg></div>
+        <h4>Authentic Content</h4>
+        <p>All guides prepared by experienced Tantra and Vedic practitioners with years of spiritual practice and traditional lineage.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-check"/></svg></div>
+        <h4>Step-by-Step Instructions</h4>
+        <p>Clear, detailed instructions with proper pronunciation guides, ritual procedures, and timing recommendations for maximum effectiveness.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-download"/></svg></div>
+        <h4>Instant Download</h4>
+        <p>Get immediate access to your purchased PDF guides. Download to any device and access offline anytime, anywhere.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-om"/></svg></div>
+        <h4>Sanskrit with Translations</h4>
+        <p>Original Sanskrit mantras with accurate transliterations, English translations, and detailed meanings for deeper understanding.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-kali"/></svg></div>
+        <h4>Safety Guidelines</h4>
+        <p>Comprehensive precautions, do's and don'ts, and spiritual discipline requirements to ensure safe and effective practice.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="icon"><svg><use href="#i-trishul"/></svg></div>
+        <h4>Lifetime Access</h4>
+        <p>One-time purchase gives you permanent access. No subscriptions, no recurring fees. Keep your spiritual guides forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <span class="brand-name">AstroTantra<span class="accent">Hawan</span></span>
+      <div class="brand-tag" style="color:#A99E8C;margin-top:4px">Vedic Astrology • Sacred Hawans • Tantra Guidance</div>
+      <p>Guided by Maa Kali and Maa Baglamukhi Divine Grace. Serving Devotees across India with Authentic Vedic & Tantric Guidance.</p>
+    </div>
+
+    <div>
+      <h5>Quick Links</h5>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Anil Ji</a>
+        <a href="hawans.html">Our Hawans</a>
+        <a href="consultations.html">Consultations</a>
+        <a href="freetools.html">Free Tools</a>
+        <a href="webinars.html">Webinars</a>
+        <a href="sadhnapdfs.html">Sadhna PDFs</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </div>
+
+    <div>
+      <h5>Important Links</h5>
+      <div class="footer-links">
+        <a href="#">How It Works</a>
+        <a href="#">Shipping & Delivery</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+
+    <div>
+      <h5>Support</h5>
+      <ul class="footer-contact">
+        <li><svg><use href="#i-phone"/></svg><span>+91 98765 43210<br><small style="color:#8A8071">(10 AM to 7 PM IST)</small></span></li>
+        <li><svg><use href="#i-mail"/></svg><span>support@astrotantrahawan.com</span></li>
+        <li><svg><use href="#i-whatsapp"/></svg><span>WhatsApp Support</span></li>
+        <li><svg><use href="#i-pin"/></svg><span>Gurugram, Haryana, India</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 AstroTantraHawan. All Rights Reserved.</span>
+    <span>Made with ❤ for Devotees</span>
+  </div>
+</footer>
+
+<script>
+// Sticky navbar shadow
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+</script>
+</body>
+</html>
